@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine Special 💕</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #1a001a, #330033, #660033);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        cursor: pointer;
+    }
+
+    .container {
+        text-align: center;
+        z-index: 2;
+    }
+
+    .heart {
+        font-size: 120px;
+        animation: beat 1.2s infinite;
+        color: #ff3366;
+        text-shadow: 0 0 25px #ff3366;
+    }
+
+    @keyframes beat {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.25);
+        }
+    }
+
+    .message {
+        margin-top: 20px;
+        font-size: 2rem;
+        animation: fadeIn 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0.5; }
+        to { opacity: 1; }
+    }
+
+    .floating-heart {
+        position: absolute;
+        bottom: -20px;
+        font-size: 24px;
+        animation: floatUp linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+        from {
+            transform: translateY(0) scale(0.8);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-120vh) scale(1.6);
+            opacity: 0;
+        }
+    }
+
+    .tap {
+        position: absolute;
+        bottom: 20px;
+        font-size: 0.9rem;
+        opacity: 0.7;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="heart">❤️</div>
+    <div class="message">Happy Valentine’s Day Radhika 💕<br>You Are My Heartbeat</div>
+</div>
+
+<div class="tap">Tap anywhere to play music 🎶</div>
+
+<audio id="music" loop>
+    <source src="./Fall-In-Love-chosic.com_.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const music = document.getElementById("music");
+    let played = false;
+
+    document.body.addEventListener("click", () => {
+        if (!played) {
+            music.play();
+            played = true;
+        }
+    });
+
+    function createFloatingHeart() {
+        const h = document.createElement("div");
+        h.className = "floating-heart";
+        h.innerHTML = "💖";
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.animationDuration = (4 + Math.random() * 4) + "s";
+        document.body.appendChild(h);
+
+        setTimeout(() => h.remove(), 8000);
+    }
+
+    setInterval(createFloatingHeart, 250);
+</script>
+
+</body>
+</html>
